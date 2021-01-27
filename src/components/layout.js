@@ -13,14 +13,16 @@ import Header from "./header"
 import "./layout.css"
 
 const Layout = ({ children }) => {
+  
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
+  {
+    site {
+      siteMetadata {
+        title,
+        author
       }
     }
+  }
   `)
 
   return (
@@ -37,7 +39,7 @@ const Layout = ({ children }) => {
         <footer style={{
           marginTop: `2rem`
         }}>
-          © {new Date().getFullYear()}, Built with
+          © {new Date().getFullYear()}, Built by {data.site.siteMetadata.author} using
           {` `}
           <a href="https://www.gatsbyjs.com">Gatsby</a>
         </footer>
